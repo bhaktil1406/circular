@@ -84,7 +84,7 @@ BSE_FEED = "https://www.bseindia.com/data/xml/notices.xml"
 
 KEYWORDS = [
     "MOCK", "ALGO", "Additional", "colocation","colo","otr",
-    "ip", "userid", "Connectivity", "Messages","audit","Expiry","Derivatives"
+    "ip", "userid", "Connectivity", "Messages","audit","Expiry","Derivatives","timeline","penalty","Investor","software"
 ]
 MCX_FEEDS = [
     "https://www.mcxindia.com/en/rssfeed/circulars/general",
