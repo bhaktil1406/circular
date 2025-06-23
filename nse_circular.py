@@ -83,7 +83,7 @@ SEBI_FEED = "https://www.sebi.gov.in/sebirss.xml"
 BSE_FEED = "https://www.bseindia.com/data/xml/notices.xml"
 
 KEYWORDS = [
-    "MOCK", "ALGO", "Additional", "colocation","colo","otr",
+    "MOCK", "ALGO", "Additional", "colocation","colo","otr","Revision",
     "ip", "userid", "Connectivity", "Messages","audit","Expiry","Derivatives","timeline","penalty","Investor","software"
 ]
 MCX_FEEDS = [
