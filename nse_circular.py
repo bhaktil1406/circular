@@ -71,17 +71,23 @@
 # streamlit run nse_circular.py
 
 
+
 import streamlit as st
 import requests
 import feedparser
 import re
 
 # === Constants ===
-HEADERS = {"User-Agent": "Mozilla/5.0"}
+HEADERS = {
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)",
+    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8",
+    "Referer": "https://www.mcxindia.com",
+    "Accept-Language": "en-US,en;q=0.9",
+}
+
 NSE_FEED = "https://nsearchives.nseindia.com/content/RSS/Circulars.xml"
 SEBI_FEED = "https://www.sebi.gov.in/sebirss.xml"
 BSE_FEED = "https://www.bseindia.com/data/xml/notices.xml"
-
 KEYWORDS = [
     "MOCK", "ALGO", "Additional", "colocation","colo","otr","Revision",
     "ip", "userid", "Connectivity", "Messages","audit","Expiry","Derivatives","timeline","penalty","Investor","software"
@@ -192,6 +198,9 @@ def display_mcx():
     found = False
 
     for feed_url in MCX_FEEDS:
+        # Extract department from URL, e.g., "general" from ".../circulars/general"
+        department = feed_url.strip("/").split("/")[-1].replace("-", " ").title()
+
         try:
             response = requests.get(feed_url, headers=HEADERS)
             feed = feedparser.parse(response.text)
@@ -205,6 +214,7 @@ def display_mcx():
                     st.markdown(f"{title}")
                     st.markdown(f"[Read Circular]({link})")
                     st.markdown(f"Published: {entry.get('published', 'N/A')}")
+                    st.markdown(f"Department: `{department}`")
                     st.markdown("---")
 
         except Exception as e:
@@ -218,7 +228,7 @@ def display_mcx():
 st.set_page_config(page_title="NSE | SEBI | BSE Circular Alerts", layout="wide")
 st.title(" Market Circular Alert Bot")
 
-tab1, tab2, tab3, tab4 = st.tabs(["📘 NSE", "📗 SEBI", "📙 BSE", "📕 MCX"])
+tab1, tab2, tab3, tab4 = st.tabs(["NSE", "SEBI", "BSE", "MCX"])
 
 
 
@@ -231,6 +241,8 @@ with tab3:
     display_bse()
 with tab4:
     display_mcx()
+
+
 
 
 
