@@ -71,7 +71,6 @@
 # streamlit run nse_circular.py
 
 
-
 import streamlit as st
 import requests
 import feedparser
@@ -89,8 +88,8 @@ NSE_FEED = "https://nsearchives.nseindia.com/content/RSS/Circulars.xml"
 SEBI_FEED = "https://www.sebi.gov.in/sebirss.xml"
 BSE_FEED = "https://www.bseindia.com/data/xml/notices.xml"
 KEYWORDS = [
-    "MOCK", "ALGO", "Additional", "colocation","colo","otr","Revision",
-    "ip", "userid", "Connectivity", "Messages","audit","Expiry","Derivatives","timeline","penalty","Investor","software"
+    "MOCK", "ALGO", "colocation","colo","otr","Revision","Futures",
+    "ip","Monitoring", "userid", "Connectivity", "Messages","audit","Expiry","Derivatives","timeline","penalty","Investor","software"
 ]
 MCX_FEEDS = [
     "https://www.mcxindia.com/en/rssfeed/circulars/general",
@@ -99,8 +98,8 @@ MCX_FEEDS = [
     "https://www.mcxindia.com/en/rssfeed/circulars/legal",
     "https://www.mcxindia.com/en/rssfeed/circulars/t-s"
 ]
-IGNORE_DEPARTMENTS = ["SLBS", "CD", "NMF", "CML", "DS", "CMTR", "IPO"]
-MANDATE_DEPARTMENTS = ["MSD"]
+IGNORE_DEPARTMENTS = ["SLBS", "CD", "NMF", "CML", "DS", "IPO"]
+MANDATE_DEPARTMENTS = ["MSD","INSP"]
 
 # === Helper Functions ===
 def keyword_match(title):
@@ -226,7 +225,7 @@ def display_mcx():
 
 # === Streamlit Layout ===
 st.set_page_config(page_title="NSE | SEBI | BSE Circular Alerts", layout="wide")
-st.title(" Market Circular Alert Bot")
+st.title("Circular Alert Bot")
 
 tab1, tab2, tab3, tab4 = st.tabs(["NSE", "SEBI", "BSE", "MCX"])
 
@@ -241,8 +240,6 @@ with tab3:
     display_bse()
 with tab4:
     display_mcx()
-
-
 
 
 
